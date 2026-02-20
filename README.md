@@ -39,8 +39,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 DATABASE_URL=postgresql://ricardo-next-tasktrkr:1996@localhost:5432/task_db_1?schema=public -->
 
 
-Perfecto, aquí tienes tu **README ajustado al nuevo stack con Next.js + Prisma + PostgreSQL**, manteniendo el espíritu del original pero adaptándolo a la arquitectura moderna que usarás.
-
 ---
 
 # 📝 TaskTrackr: Gestión de Tareas Colaborativa (Full-Stack con Next.js)
