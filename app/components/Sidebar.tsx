@@ -8,7 +8,7 @@ export default function Sidebar() {
     <>
       <button
         onClick={toggleSidebar}
-        className="fixed left-4 top-21 z-40 flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-600/20 border active:scale-97 border-none text-white transition-all duration-150"
+        className="fixed left-4 top-21 z-40 hidden md:flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-600/20 border active:scale-97 border-none text-white transition-all duration-150"
         aria-label={isCollapsed ? "Abrir panel lateral" : "Cerrar panel lateral"}
       >
         <svg
