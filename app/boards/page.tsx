@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getBoardBackgrounds, pickBackground } from "@/lib/boardBackgrounds";
 import AddNewBoard from "../components/boards/AddNewBoard";
+import BoardMenu from "../components/boards/BoardMenu";
 
 export default async function BoardsPage() {
   const cookieStore = await cookies();
@@ -104,8 +105,8 @@ export default async function BoardsPage() {
                       </>
                     )}
                     <div className="flex-1" />
-                    <div className="absolute inset-x-0 bottom-0 bg-linear-to-t  px-6 py-4 flex items-center justify-between">
-                      <div className="pr-3">
+                    <div className="absolute inset-x-0 bottom-0 bg-linear-to-t px-6 py-4 flex items-center justify-between">
+                      <div className="pr-3 flex-1 min-w-0">
                         <h3 className="text-xl font-normal text-white mb-1 line-clamp-2">
                           {board.title}
                         </h3>
@@ -113,19 +114,7 @@ export default async function BoardsPage() {
                           {new Date(board.createdAt).toLocaleDateString()}
                         </span>
                       </div>
-                      <svg
-                        className="w-5 h-5 text-white/80 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
+                      <BoardMenu boardId={board.id} />
                     </div>
                   </Link>
                 );
