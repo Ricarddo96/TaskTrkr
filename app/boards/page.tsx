@@ -41,9 +41,9 @@ export default async function BoardsPage() {
         loop
         muted
         playsInline
-        className="fixed inset-0 w-full h-full object-cover -z-10"
+        className="fixed top-0 left-0 w-screen h-lvh object-cover -z-10"
         poster="/img/preload/pr-boards-bg.webp"
-        style={{ transform: "rotate(360deg)" }}
+        style={{ willChange: "transform" }}
       >
         <source
           src="/videos/background_loop_perfecto_240f.webm"
@@ -52,7 +52,7 @@ export default async function BoardsPage() {
       </video>
 
       {/* Overlay oscuro para mejorar legibilidad */}
-      <div className="fixed inset-0 b -z-10 bg-black/10" />
+      <div className="fixed top-0 left-0 w-screen h-lvh -z-10 bg-black/10" />
 
       <BoardsLayout>
         <div className="container mx-auto px-4 md:px-8 lg:px-12 py-10">

@@ -42,7 +42,7 @@ export default function DraggableList(list: DraggableListProps) {
   return (
     <div
       key={list.id}
-      className="w-[300px] min-w-[300px] bg-white/80 backdrop-blur-lg rounded-lg shadow-lg flex flex-col"
+      className="w-full md:w-[300px] md:min-w-[300px] bg-white/80 backdrop-blur-lg rounded-lg shadow-lg flex flex-col"
       ref={setNodeRef}
       style={style}
       {...attributes}
