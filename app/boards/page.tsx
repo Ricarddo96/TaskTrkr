@@ -55,7 +55,7 @@ export default async function BoardsPage() {
       <div className="fixed inset-0 b -z-10 bg-black/10" />
 
       <BoardsLayout>
-        <div className="container mx-auto px-45 py-10">
+        <div className="container mx-auto px-4 md:px-8 lg:px-12 py-10">
           <div className="flex justify-between mt-3 mb-3">
             <h1 className="text-3xl font-semibold mb-8 text-white ">Mis Tableros</h1>
             <AddNewBoard />

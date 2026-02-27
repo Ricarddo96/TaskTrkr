@@ -8,7 +8,7 @@ export default function Sidebar() {
     <>
       <button
         onClick={toggleSidebar}
-        className="fixed left-4 top-21 z-20 flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-600/20 border active:scale-97 border-none text-white transition-all duration-150"
+        className="fixed left-4 top-21 z-40 flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-600/20 border active:scale-97 border-none text-white transition-all duration-150"
         aria-label={isCollapsed ? "Abrir panel lateral" : "Cerrar panel lateral"}
       >
         <svg
@@ -25,9 +25,18 @@ export default function Sidebar() {
           />
         </svg>
       </button>
-      
+
+      {/* Backdrop para móvil: empieza bajo el navbar (top-16) para no taparlo */}
+      {!isCollapsed && (
+        <div
+          className="fixed top-16 inset-x-0 bottom-0 z-20 bg-black/40 md:hidden"
+          onClick={toggleSidebar}
+          aria-hidden="true"
+        />
+      )}
+
       <aside
-        className={`fixed left-0 top-16 h-[calc(100vh-4rem)] z-10 w-64 backdrop-blur-2xl shadow-lg transition-all duration-150 ease-in-out overflow-hidden ${
+        className={`fixed left-0 top-16 h-[calc(100vh-4rem)] z-30 w-64 backdrop-blur-2xl shadow-lg transition-all duration-150 ease-in-out overflow-hidden ${
           isCollapsed ? "-translate-x-full" : "translate-x-0"
         }`}
       >

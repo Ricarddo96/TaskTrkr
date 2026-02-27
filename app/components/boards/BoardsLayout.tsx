@@ -19,8 +19,8 @@ export function BoardsLayoutClient({
       <Sidebar />
 
       <main
-        className={`flex-1 pt-16 pb-10 px-8 min-h-screen transition-all duration-300 ease-in-out ${
-          isCollapsed ? "ml-12" : "ml-62"
+        className={`flex-1 pt-16 pb-10 px-8 min-h-screen transition-all duration-300 ease-in-out ml-0 ${
+          isCollapsed ? "md:ml-12" : "md:ml-62"
         }`}
       >
         {children}
