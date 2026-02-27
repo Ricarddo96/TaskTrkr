@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { deleteCard } from "../../actions/cards";
 import { CardFormUpdate } from "./CardForm";
@@ -17,14 +18,36 @@ export default function CardMenu({
   const [showEditForm, setShowEditForm] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState("");
+  const [dropdownPosition, setDropdownPosition] = useState<{
+    top: number;
+    right: number;
+  } | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
 
   useEffect(() => {
+    if (isOpen && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 4,
+        right: window.innerWidth - rect.right,
+      });
+    } else {
+      setDropdownPosition(null);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+      const target = event.target as Node;
+      if (
+        menuRef.current?.contains(target) ||
+        buttonRef.current?.contains(target)
+      ) {
+        return;
       }
+      setIsOpen(false);
     }
 
     if (isOpen) {
@@ -69,9 +92,42 @@ export default function CardMenu({
     setShowEditForm(false);
   };
 
+  const dropdownContent =
+    isOpen &&
+    dropdownPosition &&
+    typeof document !== "undefined" &&
+    createPortal(
+      <div
+        ref={menuRef}
+        className="fixed bg-white shadow-lg rounded-md border border-gray-200 min-w-[150px] z-9999"
+        style={{
+          top: dropdownPosition.top,
+          right: dropdownPosition.right,
+        }}
+      >
+        <button
+          onClick={handleEdit}
+          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 first:rounded-t-md transition-colors flex items-center gap-2"
+        >
+          <span>✏️</span>
+          <span>Editar</span>
+        </button>
+        <button
+          onClick={handleDelete}
+          disabled={deleting}
+          className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 last:rounded-b-md transition-colors flex items-center gap-2 disabled:opacity-50"
+        >
+          <span>🗑️</span>
+          <span>{deleting ? "Borrando..." : "Borrar"}</span>
+        </button>
+      </div>,
+      document.body
+    );
+
   return (
-    <div className="relative" ref={menuRef}>
+    <div className="relative">
       <button
+        ref={buttonRef}
         onClick={handleToggleMenu}
         className="text-gray-600 hover:text-gray-800 p-1 rounded-full hover:bg-gray-300 transition-colors"
         aria-label="Menú de opciones"
@@ -86,25 +142,7 @@ export default function CardMenu({
         </svg>
       </button>
 
-      {isOpen && (
-        <div className="absolute right-0 top-full mt-1 bg-white shadow-lg rounded-md border border-gray-200 min-w-[150px] z-50">
-          <button
-            onClick={handleEdit}
-            className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 first:rounded-t-md transition-colors flex items-center gap-2"
-          >
-            <span>✏️</span>
-            <span>Editar</span>
-          </button>
-          <button
-            onClick={handleDelete}
-            disabled={deleting}
-            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 last:rounded-b-md transition-colors flex items-center gap-2 disabled:opacity-50"
-          >
-            <span>🗑️</span>
-            <span>{deleting ? "Borrando..." : "Borrar"}</span>
-          </button>
-        </div>
-      )}
+      {dropdownContent}
 
       {showEditForm && (
         <CardFormUpdate

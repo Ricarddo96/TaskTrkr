@@ -342,13 +342,13 @@ export default function BoardWithDragDrop({ board }: BoardWithDragDropProps) {
                   Sin tarjetas
                 </div>
               ) : (
-                <ul className="space-y-2">
+                <ul className="space-y-2 overflow-hidden">
                   {activeList.cards.slice(0, 3).map((card) => (
                     <li
                       key={card.id}
-                      className="bg-gray-100/50 px-3 py-2 rounded shadow-sm"
+                      className="bg-gray-100/50 px-3 py-2 rounded shadow-sm min-w-0 overflow-hidden"
                     >
-                      <div className="font-medium text-gray-800">
+                      <div className="font-medium text-gray-800 truncate">
                         {card.title}
                       </div>
                     </li>
@@ -364,10 +364,10 @@ export default function BoardWithDragDrop({ board }: BoardWithDragDropProps) {
           </div>
         )}
         {activeCard && (
-          <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded shadow-2xl rotate-2 opacity-95 min-w-[280px] max-w-[280px] cursor-grabbing">
-            <div className="font-medium text-gray-800">{activeCard.title}</div>
+          <div className="bg-white/80 backdrop-blur-sm px-3 py-2 rounded shadow-2xl rotate-2 opacity-95 min-w-[280px] max-w-[280px] cursor-grabbing overflow-hidden">
+            <div className="font-medium text-gray-800 truncate">{activeCard.title}</div>
             {activeCard.description && (
-              <div className="text-sm text-gray-600 mt-1">
+              <div className="text-sm text-gray-600 mt-1 truncate">
                 {activeCard.description}
               </div>
             )}

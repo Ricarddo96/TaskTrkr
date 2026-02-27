@@ -52,7 +52,7 @@ export default function DraggableList(list: DraggableListProps) {
         className="flex justify-between items-center p-4 pb-3 border-b border-gray-200 cursor-grab active:cursor-grabbing select-none"
         {...listeners}
       >
-        <h3 className="font-semibold text-gray-800 text-lg flex-1 pr-2">
+        <h3 className="font-semibold text-gray-800 text-lg flex-1 min-w-0 pr-2 truncate">
           {list.title}
         </h3>
         <div

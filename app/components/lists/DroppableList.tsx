@@ -26,7 +26,7 @@ export default function DroppableList({ listId, cards }: DroppableListProps) {
   });
 
   return (
-    <div ref={setNodeRef} className="flex flex-col flex-1">
+    <div ref={setNodeRef} className="flex flex-col flex-1 min-w-0">
       <div className="px-4 pt-3 pb-1">
         {cards.length === 0 ? (
           <div className="text-gray-400 italic text-sm p-2">Sin tarjetas</div>
@@ -35,7 +35,7 @@ export default function DroppableList({ listId, cards }: DroppableListProps) {
             items={cards.map((card) => card.id)}
             strategy={verticalListSortingStrategy}
           >
-            <ul className="space-y-2">
+            <ul className="space-y-2 min-w-0">
               {cards.map((card) => (
                 <DraggableCard
                   key={card.id}

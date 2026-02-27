@@ -50,13 +50,13 @@ function DraggableCard({
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-gray-100/60 px-3 py-2 rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer active:cursor-grabbing"
+      className="bg-gray-100/60 px-3 py-2 rounded shadow-sm hover:shadow-md transition-shadow cursor-pointer active:cursor-grabbing min-w-0"
     >
-      <div className="flex justify-between items-start mb-1">
-        <div className="flex-1 pr-2">
-          <div className="font-medium text-gray-800">{title}</div>
+      <div className="flex justify-between items-start mb-1 min-w-0">
+        <div className="flex-1 min-w-0 pr-2">
+          <div className="font-medium text-gray-800 truncate">{title}</div>
           {description && (
-            <div className="text-sm text-gray-600 mt-1">{description}</div>
+            <div className="text-sm text-gray-600 mt-1 truncate">{description}</div>
           )}
         </div>
         <div onClick={(e) => e.stopPropagation()}>
