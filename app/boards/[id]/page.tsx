@@ -41,13 +41,13 @@ export default async function BoardDetailPage({
 
   return (
     <div
-      className="min-h-screen relative"
+      className="min-h-svh relative"
       style={
         !bg ? { backgroundColor: "rgba(30,30,30,0.8)" } : undefined
       }
     >
       {bgUrl && (
-        <div className="fixed inset-0 -z-10">
+        <div className="fixed top-0 left-0 w-screen h-lvh -z-10">
           <Image
             src={bgUrl}
             alt=""
