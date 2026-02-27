@@ -70,8 +70,8 @@ export default async function BoardDetailPage({
         <Navbar />
       </div>
       <div className="container mx-auto px-6 py-23 relative z-10">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-semibold text-white">{board.title}</h1>
+        <div className="flex flex-col gap-4 mb-6 md:flex-row md:items-center md:justify-between">
+          <h1 className="text-2xl md:text-3xl font-semibold text-white">{board.title}</h1>
           <AddListButton boardId={board.id} />
         </div>
         <BoardWithDragDrop board={board} />
